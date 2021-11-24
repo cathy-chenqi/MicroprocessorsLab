@@ -16,8 +16,8 @@ loop:
 	incf 	0x06, W, A
 test:
 	movwf	0x06, A	    ; Test for end of loop condition
-	movlw 	0x63
-	cpfsgt 	0x06, A
+	movlw 	0x05
+	cpfsgt 	0x06, A	    ; compare literal in f with 0x05, skip the next branch if f > W
 	bra 	loop		    ; Not yet finished goto start of loop again
 	goto 	0x0		    ; Re-run program from start
 
