@@ -14,8 +14,9 @@ setup:
 	goto	start
 	; ******* My data and where to put it in RAM *
 myTable:
-	db	'T','h','i','s',' ','i','s',' ','j','u','s','t'
-	db	' ','s','o','m','e',' ','d','a','t','a'
+	;db	'T','h','i','s',' ','i','s',' ','j','u','s','t'
+	;db	' ','s','o','m','e',' ','d','a','t','a'
+	db	0x24,0x76,0x23
 	myArray EQU 0x400	; Address in RAM for data
 	counter EQU 0x10	; Address of counter variable
 	align	2		; ensure alignment of subsequent instructions 
@@ -28,7 +29,7 @@ start:
 	movwf	TBLPTRH, A	; load high byte to TBLPTRH
 	movlw	low(myTable)	; address of data in PM
 	movwf	TBLPTRL, A	; load low byte to TBLPTRL
-	movlw	22		; 22 bytes to read
+	movlw	3		; 22 bytes to read
 	movwf 	counter, A	; our counter register
 loop:
         tblrd*+			; move one byte from PM to TABLAT, increment TBLPRT
